@@ -65,7 +65,7 @@ class Blockchain{
 
 let TestBuck = new Blockchain();
 console.log('Mining block 1...');
-TestBuck.addBlock(new Block(1, "20/07/2017", { amount: 100 }));
+TestBuck.addBlock(new Block(1, "01/01/2018", { amount: 100 }));
 
 console.log('Mining block 2...');
-TestBuck.addBlock(new Block(2, "20/07/2017", { amount: 500 }));
+TestBuck.addBlock(new Block(2, "02/01/2018", { amount: 500 }));

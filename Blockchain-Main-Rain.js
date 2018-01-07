@@ -1,17 +1,18 @@
 const SHA256 = require("crypto-js/sha256");
 
 class Block {
-  constructor(index, timestamp, data, previousHash = '') {
+  constructor(index, timestamp, data, previousHash, splitHash = '') {
     this.index = index;
     this.previousHash = previousHash;
     this.timestamp = timestamp;
     this.data = data;
     this.hash = this.calculateHash();
     this.nonce = 0;
+    this.split = this.splitHash
   }
 
   calculateHash() {
-      return SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString();
+      return SHA256(this.index + this.previousHash + this.timestamp + this.splitHash + JSON.stringify(this.data) + this.nonce).toString();
   }
 
   mineBlock(difficulty) {
@@ -88,9 +89,14 @@ var matrixRain = new Object({
 		this.interval = setInterval(function() {
 			matrixRain.draw();
 		}, ((typeof fps === 'undefined') ? 30 : fps) < 0 ? 30 : fps) / 1000;
-	},
+    },
+    
+    splitHash: function () {
+    return this.split ("")
+    }
+
 	hashChar: function() {
-		return this.calculateHash * this.chars.length;
+		return this.splitHash * this.chars.length;
 	},
 	draw: function() {
 		this.context.fillStyle = 'rgba(0, 0, 0, 0.15)';
